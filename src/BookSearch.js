@@ -17,8 +17,12 @@ class BookSearchScreen extends React.Component {
     if(this.isValidQuery(query)){
       BooksAPI.search(query)
       .then((data) => {
-        if(data instanceof Array)
+        if(data instanceof Array){
           this.setState({results: data})
+        }else{
+          // an empty response - no books found
+          this.setState({results: []})
+        }
       })
     }else{
       this.setState({results: []})
